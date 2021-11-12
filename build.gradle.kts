@@ -11,12 +11,12 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven("https://s01.oss.sonatype.org/content/repositories/releases/")
 }
 
 dependencies {
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+    implementation("com.gitlab.mvysny.konsume-xml:konsume-xml:1.0")
 }
 
 tasks.test {

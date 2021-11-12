@@ -6,5 +6,5 @@ import kotlinx.serialization.modules.SerializersModule
 
 @ExperimentalSerializationApi
 fun main() {
-//    Server(8080, "/").run()
+    Server(8080, "root").run()
 }

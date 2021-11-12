@@ -1,8 +1,6 @@
 package me.schnavid.kaninchenbau
 
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-import me.schnavid.kaninchenbau.dav.json.Propfind
+import me.schnavid.kaninchenbau.dav.Propfind
 import me.schnavid.kaninchenbau.http.MediaType
 import me.schnavid.kaninchenbau.http.Request
 import me.schnavid.kaninchenbau.http.Response
@@ -33,7 +31,7 @@ class Server(port: Int, rootDirPath: String) {
         }
     }
 
-    fun handle(request: Request): Response {
+    private fun handle(request: Request): Response {
         when (request.method) {
             "PROPFIND" -> return handlePropfind(request)
         }
@@ -46,11 +44,13 @@ class Server(port: Int, rootDirPath: String) {
 
         when (request.contentType) {
             MediaType.xml -> {
+                val propfind = Propfind.xmlTopLevel(request.body!!)
+
+                println(propfind)
+
                 TODO()
             }
             MediaType.json -> {
-                val propfind = request.body?.let { Json.decodeFromString<Propfind>(it) } ?: return Response.badRequest()
-
                 TODO()
             }
             else -> {
